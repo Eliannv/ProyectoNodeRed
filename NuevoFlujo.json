@@ -1,1 +1,519 @@
-[]
+[
+    {
+        "id": "8d6a53b07c3a74af",
+        "type": "tab",
+        "label": "Ejercicio 1 <Node-Red>",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "65e3b156bf7248b8",
+        "type": "group",
+        "z": "8d6a53b07c3a74af",
+        "name": "",
+        "style": {
+            "label": true,
+            "color": "none",
+            "fill": "#e3f3d3",
+            "stroke": "#000000"
+        },
+        "nodes": [
+            "81a9f8bf560d8cf0",
+            "82a1b1fad8d373a7",
+            "2c39dd44892d4c6f",
+            "a8e3638b11919716",
+            "bcdd7386facf23fb",
+            "3d38f51b0cc75753",
+            "f0c1dd4afd6d4d71",
+            "2bcf9802840bf30e",
+            "ef5328c0473f7a3c",
+            "0180c633c35974d2",
+            "92b7778c94a8eb8a",
+            "424880f6618e9322",
+            "1b899e8848f74fe5",
+            "76eb5ce26b9bcb04",
+            "b1261ae2d46958de",
+            "aee53b2c63a5e7ba",
+            "170cdf1523c79c87",
+            "c90cc54c7d82f878"
+        ],
+        "x": 54,
+        "y": 159,
+        "w": 1242,
+        "h": 402
+    },
+    {
+        "id": "base-config",
+        "type": "ui-base",
+        "name": "Dashboard Base",
+        "path": "/dashboard",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-control",
+            "ui-notification"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 5,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "cf3454612e091489",
+        "type": "ui-page",
+        "name": "Ejercicio 1 Node-Red",
+        "ui": "base-config",
+        "path": "/page2",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "theme-paul",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "57f1b3325ff4b518",
+        "type": "ui-group",
+        "name": "Grupo de Prueba Ejercicio 1 -Function-",
+        "page": "cf3454612e091489",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "81a9f8bf560d8cf0",
+        "type": "inject",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Generar dato",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "topic": "",
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "0180c633c35974d2"
+            ]
+        ]
+    },
+    {
+        "id": "82a1b1fad8d373a7",
+        "type": "function",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Temp = x10",
+        "func": "msg.payload = Number(msg.payload) * 10;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 280,
+        "wires": [
+            [
+                "2c39dd44892d4c6f"
+            ]
+        ]
+    },
+    {
+        "id": "2c39dd44892d4c6f",
+        "type": "function",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Temp > 50",
+        "func": "if (Number(msg.payload) > 50) {\n    return [msg, null];\n} else {\n    return [null, msg];\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 280,
+        "wires": [
+            [
+                "a8e3638b11919716"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a8e3638b11919716",
+        "type": "function",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Alarma Temp",
+        "func": "msg.payload = \"Alarma mayor a 50\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 280,
+        "wires": [
+            [
+                "bcdd7386facf23fb",
+                "92b7778c94a8eb8a"
+            ]
+        ]
+    },
+    {
+        "id": "bcdd7386facf23fb",
+        "type": "debug",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Temperatura",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3d38f51b0cc75753",
+        "type": "function",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Hum = x3 + 2.5",
+        "func": "msg.payload = (Number(msg.payload) * 3) + 2.5;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 360,
+        "wires": [
+            [
+                "f0c1dd4afd6d4d71"
+            ]
+        ]
+    },
+    {
+        "id": "f0c1dd4afd6d4d71",
+        "type": "function",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Hum > 90",
+        "func": "if (Number(msg.payload) > 90) {\n    return [msg, null];\n} else {\n    return [null, msg];\n}",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 360,
+        "wires": [
+            [
+                "2bcf9802840bf30e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2bcf9802840bf30e",
+        "type": "function",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Alarma Hum",
+        "func": "msg.payload = \"Alarma mayor a 90\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 400,
+        "wires": [
+            [
+                "ef5328c0473f7a3c",
+                "424880f6618e9322"
+            ]
+        ]
+    },
+    {
+        "id": "ef5328c0473f7a3c",
+        "type": "debug",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Humedad",
+        "active": true,
+        "tosidebar": true,
+        "complete": "payload",
+        "x": 1140,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0180c633c35974d2",
+        "type": "random",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "Sensor Random",
+        "low": "0",
+        "high": "45",
+        "inte": "false",
+        "property": "payload",
+        "x": 350,
+        "y": 320,
+        "wires": [
+            [
+                "82a1b1fad8d373a7",
+                "3d38f51b0cc75753"
+            ]
+        ]
+    },
+    {
+        "id": "1b899e8848f74fe5",
+        "type": "ui-button",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "group": "57f1b3325ff4b518",
+        "name": "",
+        "label": "",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "chevron-right",
+        "iconPosition": "right",
+        "payload": "Ejercicio 2 Node-Red",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 150,
+        "y": 520,
+        "wires": [
+            [
+                "c90cc54c7d82f878"
+            ]
+        ]
+    },
+    {
+        "id": "76eb5ce26b9bcb04",
+        "type": "ui-button",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "group": "57f1b3325ff4b518",
+        "name": "Return Home",
+        "label": "Return Home",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "chevron-right",
+        "iconPosition": "right",
+        "payload": "Proyecto - Markdown 1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 170,
+        "y": 440,
+        "wires": [
+            [
+                "b1261ae2d46958de"
+            ]
+        ]
+    },
+    {
+        "id": "aee53b2c63a5e7ba",
+        "type": "ui-button",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "group": "57f1b3325ff4b518",
+        "name": "",
+        "label": "",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "chevron-left",
+        "iconPosition": "right",
+        "payload": "Proyecto - Markdown 1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 150,
+        "y": 480,
+        "wires": [
+            [
+                "170cdf1523c79c87"
+            ]
+        ]
+    },
+    {
+        "id": "92b7778c94a8eb8a",
+        "type": "ui-text",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "group": "57f1b3325ff4b518",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Valor de Temperatura",
+        "label": "Valor de Temperatura",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1170,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "424880f6618e9322",
+        "type": "ui-text",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "group": "57f1b3325ff4b518",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Valor de Humedad",
+        "label": "Valor de Humedad",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 1170,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b1261ae2d46958de",
+        "type": "ui-control",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "",
+        "ui": "base-config",
+        "events": "all",
+        "x": 360,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "170cdf1523c79c87",
+        "type": "ui-control",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "",
+        "ui": "base-config",
+        "events": "all",
+        "x": 360,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c90cc54c7d82f878",
+        "type": "ui-control",
+        "z": "8d6a53b07c3a74af",
+        "g": "65e3b156bf7248b8",
+        "name": "",
+        "ui": "base-config",
+        "events": "all",
+        "x": 360,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    }
+]
